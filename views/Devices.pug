@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  - var results =[{name:"Laptop", RAM:"16 GB", color:"Black"},{name:"Mobile", RAM:"8 GB", color:"Blue"},{name:"Watch", RAM:"2 GB", color:"red"}]
+  div(class="container-fluid")
+  div(class="row")
+   each r,index  in results 
+    div(class="col-sm-2" onclick =`buy(${index})`) #{r.name}, #{r.RAM}, #{r.color}
+    script.
+        function buy(a)
+        {
+            alert(`You purchased Item ${a+1}`)
+        }
