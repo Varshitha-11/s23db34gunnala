@@ -4,9 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var Devices = require("./models/Devices");
+var Devices= require('./models/Devices');
+var resourceRouter = require('./routes/resource');
 
 var app = express();
 
@@ -26,10 +28,11 @@ process.env.MONGO_CON
 mongoose = require('mongoose');
 mongoose.connect(connectionString);
 
-
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/resource', resourceRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

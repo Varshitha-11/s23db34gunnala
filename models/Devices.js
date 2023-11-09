@@ -4,5 +4,5 @@ name: String,
 color: String,
 ram: Number
 })
-module.exports = mongoose.model("Device",
+module.exports = mongoose.model("Devices",
 DeviceSchema)
