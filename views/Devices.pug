@@ -2,10 +2,10 @@ extends layout
 
 block content
   h1= title
-  - var results =[{name:"Laptop", RAM:"16 GB", color:"Black"},{name:"Mobile", RAM:"8 GB", color:"Blue"},{name:"Watch", RAM:"2 GB", color:"red"}]
+  - var result = results 
   div(class="container-fluid")
   div(class="row")
-   each r,index  in results 
+   each r,index  in result 
     div(class="col-sm-2" onclick =`buy(${index})`) #{r.name}, #{r.RAM}, #{r.color}
     script.
         function buy(a)

@@ -60,7 +60,7 @@ console.log("Connection to DB succeeded")});
 // We can seed the collection if needed onserver start
 async function recreateDB(){
  // Delete everything
-//  await Devices.deleteMany();
+  await Devices.deleteMany();
  let instance1 = new
 Devices({name:"Laptop", color:'Pink',
 ram:250});
