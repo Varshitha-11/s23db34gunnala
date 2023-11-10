@@ -18,7 +18,7 @@ res.send(`{"error": ${err}}`);
 exports.Devices_view_all_Page = async function(req, res) {
   try{
   theDevices = await Devices.find();
-  res.render('Devices', { title: 'Devices Search Results', results: theDevices });
+  res.render('Devices', { title: 'Devices Search Results', results: Devices });
   }
   catch(err){
   res.status(500);
@@ -56,3 +56,25 @@ res.send('NOT IMPLEMENTED: Devices delete DELETE ' + req.params.id);
 exports.Devices_update_put = function(req, res) {
 res.send('NOT IMPLEMENTED: Devices update PUT' + req.params.id);
 };
+
+// for a specific // for a specific Devices.
+exports.Devices_detail = async function(req, res) {
+ console.log("detail" + req.params.id)
+ try {
+ result = await Devices.findById( req.params.id)
+ res.send(result)
+ } catch (error) {
+ res.status(500)
+ res.send(`{"error": document for id ${req.params.id} not found`);
+ }
+};.
+exports.Devices_detail = async function(req, res) {
+  console.log("detail" + req.params.id)
+  try {
+  result = await Devices.findById( req.params.id)
+  res.send(result)
+  } catch (error) {
+  res.status(500)
+  res.send(`{"error": document for id ${req.params.id} not found`);
+  }
+ };
