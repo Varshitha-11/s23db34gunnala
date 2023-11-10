@@ -35,7 +35,7 @@ mongoose.connect(connectionString,
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/resource', resourceRouter);
-app.use('/Devices', DevicesRouter);
+app.use('/Devices', Devices);
 
 
 
