@@ -4,7 +4,7 @@ var Devices = require('../models/Devices');
 exports.Devices_list = async function(req, res) {
 try{
 Devices = await Devices.find();
-res.send(eDevices);
+res.send(Devices);
 }
 catch(err){
 res.status(500);
