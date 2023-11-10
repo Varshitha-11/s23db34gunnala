@@ -7,7 +7,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var Devices= require('./models/Devices');
+var devicesRouter = require('./models/devices');
 var resourceRouter = require('./routes/resource');
 
 var app = express();
@@ -23,24 +23,28 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 require('dotenv').config();
-const connectionString =
-process.env.MONGO_CON
+const connectionString = process.env.MONGO_CON
 mongoose = require('mongoose');
-mongoose.connect(connectionString);
+mongoose.connect(connectionString,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+
+  });
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/resource', resourceRouter);
-
+app.use('/devices', devicesRouter);
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -54,42 +58,52 @@ app.use(function(err, req, res, next) {
 var db = mongoose.connection;
 //Bind connection to error event
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once("open", function(){
-console.log("Connection to DB succeeded")});
+db.once("open", function () {
+  console.log("Connection to DB succeeded")
+});
 
 // We can seed the collection if needed onserver start
-async function recreateDB(){
- // Delete everything
-  await Devices.deleteMany();
- let instance1 = new
-Devices({name:"Laptop", color:'Pink',
-ram:250});
- instance1.save().then(doc=>{
- console.log("First object saved")}
- ).catch(err=>{
- console.error(err)
- });
+async function recreateDB() {
+  // Delete everything
+  await devices.deleteMany();
+  let instance1 = new
+    devices({
+      name: "Laptop", color: 'Pink',
+      ram: 250
+    });
+  instance1.save().then(doc => {
+    console.log("First object saved")
+  }
+  ).catch(err => {
+    console.error(err)
+  });
 
 
-let instance2 = new
-Devices({name:"Tv", color:'Bule',
-ram:128});
- instance2.save().then(doc=>{
- console.log("secound object saved")}
- ).catch(err=>{
- console.error(err)
- });
+  let instance2 = new
+    devices({
+      name: "Tv", color: 'Bule',
+      ram: 128
+    });
+  instance2.save().then(doc => {
+    console.log("secound object saved")
+  }
+  ).catch(err => {
+    console.error(err)
+  });
 
- let instance3 = new
-Devices({name:"Mobile", color:'Red',
-ram:250});
- instance3.save().then(doc=>{
- console.log("Thired object saved")}
- ).catch(err=>{
- console.error(err)
- });
+  let instance3 = new
+    devices({
+      name: "Mobile", color: 'Red',
+      ram: 250
+    });
+  instance3.save().then(doc => {
+    console.log("Thired object saved")
+  }
+  ).catch(err => {
+    console.error(err)
+  });
 }
 let reseed = true;
-if (reseed) {recreateDB();}
+if (reseed) { recreateDB(); }
 
 module.exports = app;
