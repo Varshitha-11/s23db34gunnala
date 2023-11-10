@@ -2,19 +2,19 @@ var express = require('express');
 var router = express.Router();
 // Require controller modules.
 var api_controller = require('../controllers/api');
-var devices_controller = require('../controllers/Devices');
+var Devices_controller = require('../controllers/Devices');
 /// API ROUTE ///
 // GET resources base.
 router.get('/', api_controller.api);
-/// devices ROUTES ///
-// POST request for creating a devices.
-router.post('/devices', devices_controller.devices_create_post);
-// DELETE request to delete devices.
-router.delete('/devices/:id', devices_controller.devices_delete);
-// PUT request to update devices.
-router.put('/devices/:id', devices_controller.devices_update_put);
-// GET request for one devices.
-router.get('/devices/:id', devices_controller.devices_detail);
-// GET request for list of all devices items.
-router.get('/devices', devices_controller.devices_list);
+/// Devices ROUTES ///
+// POST request for creating a Devices.
+router.post('/Devices', Devices_controller.Devices_create_post);
+// DELETE request to delete Devices.
+router.delete('/Devices/:id', Devices_controller.Devices_delete);
+// PUT request to update Devices.
+router.put('/Devices/:id', Devices_controller.Devices_update_put);
+// GET request for one Devices.
+router.get('/Devices/:id', Devices_controller.Devices_detail);
+// GET request for list of all Devices items.
+router.get('/Devices', Devices_controller.Devices_list);
 module.exports = router;

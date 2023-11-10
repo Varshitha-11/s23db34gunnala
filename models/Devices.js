@@ -1,9 +1,7 @@
-var express = require('express');
-var router = express.Router();
- 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('devices', { title: 'Search Results - Devices' });
-});
- 
-module.exports = router;
+const mongoose = require("mongoose")
+const DevicesSchema = mongoose.Schema({
+name: String,
+type: String,
+No_of_songs : Number
+})
+module.exports = mongoose.model("Devices",DevicesSchema)

@@ -1,10 +1,10 @@
-var devices = require('../models/devices');
-// List of all devices
-// List of all devices
-exports.devices_list = async function(req, res) {
+var Devices = require('../models/Devices');
+// List of all Devices
+// List of all Devices
+exports.Devices_list = async function(req, res) {
 try{
-thedevices = await devices.find();
-res.send(thedevices);
+Devices = await Devices.find();
+res.send(eDevices);
 }
 catch(err){
 res.status(500);
@@ -15,10 +15,10 @@ res.send(`{"error": ${err}}`);
 
 // VIEWS
 // Handle a show all view
-exports.devices_view_all_Page = async function(req, res) {
+exports.Devices_view_all_Page = async function(req, res) {
   try{
-  thedevices = await devices.find();
-  res.render('devices', { title: 'devices Search Results', results: thedevices });
+  theDevices = await Devices.find();
+  res.render('Devices', { title: 'Devices Search Results', results: theDevices });
   }
   catch(err){
   res.status(500);
@@ -28,14 +28,14 @@ exports.devices_view_all_Page = async function(req, res) {
 
   
 
-// for a specific devices.
-exports.devices_detail = function(req, res) {
-res.send('NOT IMPLEMENTED: devices detail: ' + req.params.id);
+// for a specific Devices.
+exports.Devices_detail = function(req, res) {
+res.send('NOT IMPLEMENTED: Devices detail: ' + req.params.id);
 };
-// Handle devices create on POST.
-exports.devices_create_post =  async function(req, res) {
+// Handle Devices create on POST.
+exports.Devices_create_post =  async function(req, res) {
   console.log(req.body)
-  let document = new devices()
+  let document = new Devices()
   document.name = req.body.name;
   document.No_of_songs = req.body.No_of_songs;
   document.type = req.body.type;
@@ -48,11 +48,11 @@ exports.devices_create_post =  async function(req, res) {
       res.send(`{"error": ${err}}`)
   }
 };
-// Handle devices delete form on DELETE.
-exports.devices_delete = function(req, res) {
-res.send('NOT IMPLEMENTED: devices delete DELETE ' + req.params.id);
+// Handle Devices delete form on DELETE.
+exports.Devices_delete = function(req, res) {
+res.send('NOT IMPLEMENTED: Devices delete DELETE ' + req.params.id);
 };
-// Handle devices update form on PUT.
-exports.devices_update_put = function(req, res) {
-res.send('NOT IMPLEMENTED: devices update PUT' + req.params.id);
+// Handle Devices update form on PUT.
+exports.Devices_update_put = function(req, res) {
+res.send('NOT IMPLEMENTED: Devices update PUT' + req.params.id);
 };

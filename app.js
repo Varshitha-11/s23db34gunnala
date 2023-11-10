@@ -7,7 +7,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var devicesRouter = require('./models/devices');
+var DevicesRouter = require('./models/Devices');
 var resourceRouter = require('./routes/resource');
 
 var app = express();
@@ -35,7 +35,7 @@ mongoose.connect(connectionString,
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/resource', resourceRouter);
-app.use('/devices', devicesRouter);
+app.use('/Devices', DevicesRouter);
 
 
 // catch 404 and forward to error handler
@@ -65,9 +65,9 @@ db.once("open", function () {
 // We can seed the collection if needed onserver start
 async function recreateDB() {
   // Delete everything
-  await devices.deleteMany();
+  await Devices.deleteMany();
   let instance1 = new
-    devices({
+    Devices({
       name: "Laptop", color: 'Pink',
       ram: 250
     });
@@ -80,7 +80,7 @@ async function recreateDB() {
 
 
   let instance2 = new
-    devices({
+    Devices({
       name: "Tv", color: 'Bule',
       ram: 128
     });
@@ -92,7 +92,7 @@ async function recreateDB() {
   });
 
   let instance3 = new
-    devices({
+    Devices({
       name: "Mobile", color: 'Red',
       ram: 250
     });
