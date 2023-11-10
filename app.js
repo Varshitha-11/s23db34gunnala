@@ -94,7 +94,7 @@ async function recreateDB() {
 
   let instance3 = new
     Devices({
-      name: "Mobile", color: 'Red',
+      name: "Hp", color: 'Red',
       ram: 250
     });
   instance3.save().then(doc => {
