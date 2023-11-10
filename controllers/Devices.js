@@ -35,10 +35,10 @@ res.send('NOT IMPLEMENTED: Devices detail: ' + req.params.id);
 // Handle Devices create on POST.
 exports.Devices_create_post =  async function(req, res) {
   console.log(req.body)
-  let document = new Devices()
+  let document = new Devices();
   document.name = req.body.name;
-  document.No_of_songs = req.body.No_of_songs;
-  document.type = req.body.type;
+  document.ram = req.body.ram;
+  document.color = req.body.color;
   try {
       let result = await document.save();
       res.send(result);
