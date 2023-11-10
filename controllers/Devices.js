@@ -67,7 +67,7 @@ exports.Devices_detail = async function(req, res) {
  res.status(500)
  res.send(`{"error": document for id ${req.params.id} not found`);
  }
-};.
+};
 exports.Devices_detail = async function(req, res) {
   console.log("detail" + req.params.id)
   try {
