@@ -11,6 +11,7 @@ var Devices = require("./models/Devices");
 var resourceRouter = require("./routes/resource");
 var Devices1Router = require("./routes/Devices1");
 
+
 var app = express();
 
 // view engine setup
