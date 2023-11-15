@@ -1,25 +1,49 @@
+bextends layout
+
 block content
- 
+  style.
+    .Devices-container {
+      margin-top: 20px;
+    }
+
+    .DevicesAttr {
+      font-weight: bold;
+    }
+
+    .Devices-info {
+      margin-bottom: 10px;
+    }
+
   h1= title
- 
-  - let Devicesid = toShow._id
-  - let name = toShow.name
-  - let  ram= toShow.ram
-  - let color = toShow. color
- 
-  div
-    div.row
-      div(class='DevicesAttr mr-3') Devices ID is:
-        div #{Devicesid}
-        div.row
-      div(class='DevicesAttr mr-3') Devices is:
-        div #{name}
- 
-    div.row
-      div(class='DevicesAttr mr-3') Devices marks is:
-        div #{ram}
- 
-    div.row
-      div(class='DevicesAttr mr-3') Devices course is:
-        div #{color}
- 
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let Devicesid = toShow._id
+    - let name = toShow.name
+    - let ram = toShow.ram
+    - let color = toShow.color
+
+    .Devices-container
+      .row.Devices-info
+        .col-md-3
+          div(class='DevicesAttr') Devices ID:
+        .col-md-3
+          div #{Devicesid}
+
+      .row.Devices-info
+        .col-md-3
+          div(class='DevicesAttr') name:
+        .col-md-3
+          div #{name}
+
+      .row.Devices-info
+        .col-md-3
+          div(class='DevicesAttr') ram:
+        .col-md-3
+          div #{ram}
+
+      .row.Devices-info
+        .col-md-3
+          div(class='DevicesAttr') color:
+        .col-md-3
+          div #{color}
