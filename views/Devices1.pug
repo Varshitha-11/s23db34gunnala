@@ -1,0 +1,25 @@
+block content
+ 
+  h1= title
+ 
+  - let Devicesid = toShow._id
+  - let name = toShow.name
+  - let  ram= toShow.ram
+  - let color = toShow. color
+ 
+  div
+    div.row
+      div(class='DevicesAttr mr-3') Devices ID is:
+        div #{Devicesid}
+        div.row
+      div(class='DevicesAttr mr-3') Devices is:
+        div #{name}
+ 
+    div.row
+      div(class='DevicesAttr mr-3') Devices marks is:
+        div #{ram}
+ 
+    div.row
+      div(class='DevicesAttr mr-3') Devices course is:
+        div #{color}
+ 

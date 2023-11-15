@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var Devices = require("./models/Devices");
 var resourceRouter = require("./routes/resource");
+var Devices1Router = require("./routes/Devices1");
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/resource', resourceRouter);
 app.use('/Devices', Devices);
+app.use('/Devices1', Devices1Router);
 
 
 

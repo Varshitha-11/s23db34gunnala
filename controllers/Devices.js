@@ -53,9 +53,21 @@ exports.Devices_create_post = async function (req, res) {
 };
 
 // Handle Devices delete form on DELETE.
-exports.Devices_delete = function (req, res) {
+/*exports.Devices_delete = function (req, res) {
   res.send('NOT IMPLEMENTED: Devices delete DELETE ' + req.params.id);
-};
+};*/
+  // Handle Costume delete on DELETE.
+  exports.Devices_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await Devices.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+   };
 
 // Handle Devices update form on PUT.
 exports.Devices_update_put = async function(req, res) {
@@ -77,3 +89,4 @@ exports.Devices_update_put = async function(req, res) {
   failed`);
   }
   };
+

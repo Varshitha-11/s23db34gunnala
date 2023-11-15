@@ -13,6 +13,7 @@ router.get('/', function(req, res, next) {
 });
 
 // GET request for one costume.
-
+/* GET detail costume page */
+router.get('/detail', Devices_controlers.Devices_view_one_Page);
 
 module.exports = router;

@@ -17,4 +17,6 @@ router.put('/Devices/:id', Devices_controller.Devices_update_put);
 router.get('/Devices/:id', Devices_controller.Devices_detail);
 // GET request for list of all Devices items.
 router.get('/Devices', Devices_controller.Devices_list);
+
+
 module.exports = router;
