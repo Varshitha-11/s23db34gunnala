@@ -8,5 +8,6 @@ router.get('/detail', Devices_controlers.Devices_view_one_Page);
 // router.get('/create', Devices_controlers.Devices_create_Page);
 // /* GET create update page */
 // router.get('/update', Devices_controlers.Devices_update_Page);
+
  
 module.exports = router;

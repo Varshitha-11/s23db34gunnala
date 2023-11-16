@@ -52,11 +52,8 @@ exports.Devices_create_post = async function (req, res) {
   }
 };
 
-// Handle Devices delete form on DELETE.
-/*exports.Devices_delete = function (req, res) {
-  res.send('NOT IMPLEMENTED: Devices delete DELETE ' + req.params.id);
-};*/
-  // Handle Costume delete on DELETE.
+
+  // Handle Devices delete on DELETE.
   exports.Devices_delete = async function(req, res) {
     console.log("delete " + req.params.id)
     try {
@@ -89,4 +86,29 @@ exports.Devices_update_put = async function(req, res) {
   failed`);
   }
   };
-
+// Handle a show one view with id specified by query
+exports.Devices_view_one_Page = async function(req, res) {
+  console.log("single view for id " + req.query.id)
+  try{
+  result = await Devices.findById( req.query.id)
+  res.render('Devicesdetail',
+ { title: 'Devices Detail', toShow: result });
+  }
+  catch(err){
+  res.status(500)
+  res.send(`{'error': '${err}'}`);
+  }
+ };
+ // Handle building the view for creating a Devices.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.Devices_create_Page = function(req, res) {
+  console.log("create view")
+  try{
+  res.render('Devicescreate', { title: 'Devices Create'});
+  }
+  catch(err){
+  res.status(500)
+  res.send(`{'error': '${err}'}`);
+  }
+ };

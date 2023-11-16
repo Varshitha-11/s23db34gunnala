@@ -12,8 +12,10 @@ router.get('/', function(req, res, next) {
 
 });
 
-// GET request for one costume.
-/* GET detail costume page */
-router.get('/detail', Devices_controlers.Devices_view_one_Page);
+// GET request for one Devices.
+/* GET detail Devices page */
+router.get('/detail', devices_controlers.Devices_view_one_Page);
 
 module.exports = router;
+//* GET create Devices page */
+router.get('/create', Devices_controlers.Devices_create_Page);
