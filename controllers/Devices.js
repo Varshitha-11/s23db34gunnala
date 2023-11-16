@@ -14,8 +14,8 @@ exports.Devices_list = async function (req, res) {
 // Handle a show all view
 exports.Devices_view_all_Page = async function (req, res) {
     try {
-        theDevices = await Devices.find();
-        res.render('Devices', { title: 'Devices Search Results', results: theDevices });
+        Devices = await Devices.find();
+        res.render('Devices', { title: 'Devices Search Results', results: Devices });
     }
     catch (err) {
         res.status(500);
@@ -42,7 +42,7 @@ exports.Devices_detail = async function (req, res) {
 exports.Devices_create_post = async function (req, res) {
     console.log(req.body)
     let document = new Devices();
-    document.Devices_name = req.body.name;
+    document.name = req.body.name;
     document.ram = req.body.ram;
     document.color = req.body.color;
     try {
