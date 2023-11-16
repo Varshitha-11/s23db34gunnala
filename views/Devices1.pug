@@ -1,16 +1,16 @@
-bextends layout
+extends layout
 
 block content
   style.
-    .Devices-container {
+    .instrument-container {
       margin-top: 20px;
     }
 
-    .DevicesAttr {
+    .instrumentAttr {
       font-weight: bold;
     }
 
-    .Devices-info {
+    .instrument-info {
       margin-bottom: 10px;
     }
 
@@ -18,32 +18,32 @@ block content
   if (toShow == null)
     h2 No instance to delete
   else
-    - let Devicesid = toShow._id
+    - let instrumentid = toShow._id
     - let name = toShow.name
     - let ram = toShow.ram
     - let color = toShow.color
 
-    .Devices-container
-      .row.Devices-info
+    .instrument-container
+      .row.instrument-info
         .col-md-3
-          div(class='DevicesAttr') Devices ID:
+          div(class='instrumentAttr') Devices ID:
         .col-md-3
           div #{Devicesid}
 
-      .row.Devices-info
+      .row.instrument-info
         .col-md-3
-          div(class='DevicesAttr') name:
+          div(class='instrumentAttr') name:
         .col-md-3
           div #{name}
 
-      .row.Devices-info
+      .row.instrument-info
         .col-md-3
-          div(class='DevicesAttr') ram:
+          div(class='instrumentAttr') ram:
         .col-md-3
           div #{ram}
 
-      .row.Devices-info
+      .row.instrument-info
         .col-md-3
-          div(class='DevicesAttr') color:
+          div(class='instrumentAttr') color:
         .col-md-3
           div #{color}
