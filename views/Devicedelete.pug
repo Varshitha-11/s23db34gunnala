@@ -1,5 +1,58 @@
 extends layout
 block content
+    style.
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #d9534f;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .DeviceAttr {
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .btn {
+            cursor: pointer;
+        }
+
+        .btn-danger {
+            background-color: #d9534f;
+            color: #fff;
+            border: none;
+            margin: 8px;
+        }
+
+        .btn-secondary {
+            background-color: #5bc0de;
+            color: #fff;
+            border: none;
+            margin: 8px;
+        }
+
     h1= title
     if (toShow == null)
         h2 No instance to delete
@@ -9,25 +62,26 @@ block content
         - let ram = toShow.ram
         - let color = toShow.color
         - let actionid = "/resource/Devices/" + Deviceid
-        script let actionid = "#{actionid}"
+        script.
+            let actionid = "#{actionid}";
         div
             div.row
-                div(class='DeviceAttr mr-3') Devices ID is:
+                div(class='DeviceAttr') Devices ID is:
                 div #{Deviceid}
             div.row
-                div(class='DeviceAttr mr-3')  name is:
+                div(class='DeviceAttr')  name is:
                 div #{name}
             div.row
-                div(class='DeviceAttr mr-3') ram is:
+                div(class='DeviceAttr') ram is:
                 div #{ram}
             div.row
-                div(class='DeviceAttr mr-3') color is:
+                div(class='DeviceAttr') color is:
                 div #{color}
-            button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
-            button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+            button(class="btn btn-danger" onclick="deleteOnid()") Delete
+            button(class="btn btn-secondary" onclick="cancel()") Cancel
         script.
             function cancel() {
-            // Go back to the home page for the costume collection
+                // Go back to the home page for the costume collection
                 window.location.href='/Devices'
             }
         script.
@@ -35,15 +89,15 @@ block content
                 console.log("starting delete")
                 // delete first
                 fetch(actionid, {
-                method: 'DELETE' // Don't need a body for the delete
+                    method: 'DELETE' // Don't need a body for the delete
                 }).then((resp) => {
-                return resp.json(); // or resp.text() or whatever the server sends
+                    return resp.json(); // or resp.text() or whatever the server sends
                 }).then((body) => {
-                alert("Delete succeded")
-                window.location.href='/Devices'
-                // TODO handle body
+                    alert("Delete succeeded")
+                    window.location.href='/Devices'
+                    // TODO handle body
                 }).catch((error) => {
-                // TODO handle error
-                alert("Delete failed " + error )
+                    // TODO handle error
+                    alert("Delete failed " + error )
                 });
             }
