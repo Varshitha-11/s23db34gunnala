@@ -1,9 +1,9 @@
-var Devices = require('../models/Devices');
+var Device = require('../models/Device');
 // List of all Costumes
-exports.Devices_list = async function (req, res) {
+exports.Device_list = async function (req, res) {
     try {
-        Devices = await Devices.find();
-        res.send(Devices);
+        theDevices = await Device.find();
+        res.send(theDevices);
     }
     catch (err) {
         res.status(500);
@@ -12,10 +12,10 @@ exports.Devices_list = async function (req, res) {
 };
 // VIEWS
 // Handle a show all view
-exports.Devices_view_all_Page = async function (req, res) {
+exports.Device_view_all_Page = async function (req, res) {
     try {
-        Devices = await Devices.find();
-        res.render('Devices', { title: 'Devices Search Results', results: Devices });
+        theDevices = await Device.find();
+        res.render('Devices', { title: 'Devices Search Results', results: theDevices });
     }
     catch (err) {
         res.status(500);
@@ -24,10 +24,10 @@ exports.Devices_view_all_Page = async function (req, res) {
 }
 
 // for a specific Costume.
-exports.Devices_detail = async function (req, res) {
+exports.Device_detail = async function (req, res) {
     console.log("detail" + req.params.id)
     try {
-        let result = await Instrument.findById(req.params.id);
+        let result = await Device.findById(req.params.id);
 
         if (!result) {
             res.status(404).send(`{"error": document for id ${req.params.id} not found`);
@@ -39,9 +39,9 @@ exports.Devices_detail = async function (req, res) {
     }
 };
 // Handle Devices create on POST.
-exports.Devices_create_post = async function (req, res) {
+exports.Device_create_post = async function (req, res) {
     console.log(req.body)
-    let document = new Devices();
+    let document = new Device();
     document.name = req.body.name;
     document.ram = req.body.ram;
     document.color = req.body.color;
@@ -56,10 +56,10 @@ exports.Devices_create_post = async function (req, res) {
 };
 
 // Handle Devices delete form on DELETE.
-exports.Devices_delete = async function(req, res) {
+exports.Device_delete = async function(req, res) {
     console.log("delete " + req.params.id)
     try {
-    result = await Devices.findByIdAndDelete( req.params.id)
+    result = await Device.findByIdAndDelete( req.params.id)
     console.log("Removed " + result)
     res.send(result)
     } catch (err) {
@@ -68,12 +68,12 @@ exports.Devices_delete = async function(req, res) {
     }
     };
 // Handle a show one view with id specified by query
-exports.Devices_view_one_Page = async function(req, res) {
+exports.Device_view_one_Page = async function(req, res) {
     console.log("single view for id " + req.query.id)
     try{
-    result = await Devices.findById( req.query.id)
-    res.render('Devicesdetail',
-    { title: 'Devices Detail', toShow: result });
+    result = await Device.findById( req.query.id)
+    res.render('Devicedetail',
+    { title: 'Device Detail', toShow: result });
     }
     catch(err){
     res.status(500)
@@ -83,23 +83,23 @@ exports.Devices_view_one_Page = async function(req, res) {
     // Handle building the view for creating a costume.
     // No body, no in path parameter, no query.
     // Does not need to be async
-    exports.Devices_create_Page = function(req, res) {
+    exports.Device_create_Page = function(req, res) {
     console.log("create view")
     try{
-    res.render('Devicescreate', { title: 'Devices Create'});
+    res.render('Devicecreate', { title: 'Device Create'});
     }
     catch(err){
     res.status(500)
     res.send(`{'error': '${err}'}`);
     }
     };
-// Handle building the view for updating a instrument.
+// Handle building the view for updating a Devices.
 // query provides the id
-exports.Devices_update_Page = async function(req, res) {
+exports.Device_update_Page = async function(req, res) {
     console.log("update view for item "+req.query.id)
     try{
-    let result = await Devices.findById(req.query.id)
-    res.render('Devicesupdate', { title: 'Devices Update', toShow: result });
+    let result = await Device.findById(req.query.id)
+    res.render('Deviceupdate', { title: 'Device Update', toShow: result });
     }
     catch(err){
     res.status(500)
@@ -107,10 +107,10 @@ exports.Devices_update_Page = async function(req, res) {
     }
     };   
 // Handle Devices update form on PUT.
-exports.Devices_update_put = async function (req, res) {
+exports.Device_update_put = async function (req, res) {
     console.log(`update on id ${req.params.id} with body${JSON.stringify(req.body)}`)
     try {
-        let toUpdate = await Devices.findById(req.params.id)
+        let toUpdate = await Device.findById(req.params.id)
         // Do updates of properties
         if (req.body.name)
             toUpdate.name = req.body.name;
@@ -127,11 +127,11 @@ exports.Devices_update_put = async function (req, res) {
     }
 };
 //Handle a delete one view with id from query
-exports.Devices_delete_Page = async function(req, res) {
+exports.Device_delete_Page = async function(req, res) {
 console.log("Delete view for id " + req.query.id)
 try{
-result = await Devices.findById(req.query.id)
-res.render('Devicesdelete', { title: 'Devices Delete', toShow:
+result = await Device.findById(req.query.id)
+res.render('Devicedelete', { title: 'Devices Delete', toShow:
 result });
 }
 catch(err){

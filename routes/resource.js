@@ -2,21 +2,21 @@ var express = require('express');
 var router = express.Router();
 // Require controller modules.
 var api_controller = require('../controllers/api');
-var Devices_controller = require('../controllers/Devices');
+var Device_controller = require('../controllers/Device');
 /// API ROUTE ///
 // GET resources base.
 router.get('/', api_controller.api);
 /// Devices ROUTES ///
 // POST request for creating a Devices.
-router.post('/Devices', Devices_controller.Devices_create_post);
+router.post('/Devices', Device_controller.Device_create_post);
 // DELETE request to delete Devices.
-router.delete('/Devices/:id', Devices_controller.Devices_delete);
+router.delete('/Devices/:id', Device_controller.Device_delete);
 // PUT request to update Devices.
-router.put('/Devices/:id', Devices_controller.Devices_update_put);
+router.put('/Devices/:id', Device_controller.Device_update_put);
 // GET request for one Devices.
-router.get('/Devices/:id', Devices_controller.Devices_detail);
+router.get('/Devices/:id', Device_controller.Device_detail);
 // GET request for list of all Devices items.
-router.get('/Devices', Devices_controller.Devices_list);
+router.get('/Devices', Device_controller.Device_list);
 
 
 module.exports = router;
