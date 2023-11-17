@@ -1,15 +1,19 @@
 extends layout
 block content
   h1= title
-  - const results = results
-  script.
-    function buy(index){
-      alert("You purchased items "+ (index+1));
-    }
   div.container-fluid
     div.row
         each item, index in results
-          div.col-sm-2(onclick = `buy(${index})`)
+           - let destination = `dispatch(\"/Devices/update?id=${item._id}\")`
+           div.col-sm-2(onclick = `buy(${index})`)
              p name: #{item.name}
              p color: #{item.color}
              p ram: $#{item.ram.toFixed(2)}
+           button.btn( class="btn-primary ml-1", onclick= destination) Update
+  script.
+    function dispatch(path){
+      window.location.href=path
+    }  
+    function buy(index){
+      alert("You purchased items "+ (index+1));
+    }

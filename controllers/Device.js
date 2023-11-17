@@ -15,7 +15,7 @@ exports.Device_list = async function (req, res) {
 exports.Device_view_all_Page = async function (req, res) {
     try {
         theDevices = await Device.find();
-        res.render('Devices', { title: 'Devices Search Results', results: theDevices });
+        res.render('Device', { title: 'Devices Search Results', results: theDevices });
     }
     catch (err) {
         res.status(500);
