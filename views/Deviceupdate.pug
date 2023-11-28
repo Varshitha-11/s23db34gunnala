@@ -6,22 +6,22 @@ block content
     else
         - let Deviceid = toShow._id
         - let name = toShow.name
+        - let color = toShow.color 
         - let ram = toShow.ram
-        - let color = toShow.color
         div.row(class='mb-2')
             div.mr-1 ID is
             div #{Deviceid}
         - let actionid = "/resource/Devices/" + Deviceid
         form(id='DeviceForm', action= actionid, method="PUT")
             div.form-group
-                label.instrumentAttr(for='name') name
+                label.deviceAttr(for='name') Device name
                 input#name(type='text', name='name', value= name )
             div.form-group
-                label.instrumentAttr(for='ram') ram
-                input#ram(type='text', name='ram', value= ram )
+                label.deviceAttr(for='color') Color
+                input#color(type='text', name='color', value= color )
             div.form-group
-                label.instrumentAttr(for='color') color
-                input#color(type='text', name='color', value= color)
+                label.deviceAttr(for='ram') Ram
+                input#ram(type='number', name='ram', value= ram )
             input(type="submit")
         script.
             document.forms['DeviceForm'].addEventListener('submit', (event) => {

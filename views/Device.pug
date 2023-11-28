@@ -1,19 +1,28 @@
-extends layout
 block content
   h1= title
-  div.container-fluid
-    div.row
-        each item, index in results
-           - let destination = `dispatch(\"/Devices/update?id=${item._id}\")`
-           div.col-sm-2(onclick = `buy(${index})`)
-             p name: #{item.name}
-             p color: #{item.color}
-             p ram: $#{item.ram.toFixed(2)}
-           button.btn( class="btn-primary ml-1", onclick= destination) Update
+  div(class="container-fluid")
+    div(class="row m-1")
+      // Add the button at the top of the collection view
+      div(class="row m-1")
+        button.btn(class="btn-success", onclick="dispatch('/Devices/create')") Create New
+
+      each item,index in results
+        - let updateDestination = `dispatch("/Devices/update?id=${item._id}")`
+        - let detailDestination = `dispatch("/Devices/detail?id=${item._id}")`
+        - let deleteDestination = `dispatch("/Devices/delete?id=${item._id}")`
+
+        // Display all three buttons in a single line for each item
+        div(class="row-sm-2 m-1")
+          | Item #{item.name}(#{item.color}) is #{item.ram}
+          button.btn(class="btn-primary ml-1", onclick=updateDestination) Update 
+          button.btn(class="btn-primary m-1", onclick=detailDestination) Detail
+          button.btn(class="btn-primary m-1", onclick=deleteDestination) Delete
+
   script.
-    function dispatch(path){
-      window.location.href=path
-    }  
-    function buy(index){
-      alert("You purchased items "+ (index+1));
+    function buy(index) {
+      alert("You purchased items " + (index + 1));
+    }
+
+    function dispatch(path) {
+      window.location.href = path;
     }

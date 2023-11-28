@@ -30,7 +30,7 @@ passport.use(new LocalStrategy(
 
 require('dotenv').config();
 const connectionString = process.env.MONGO_CON
-mongoose = require('mongoose');
+const mongoose = require('mongoose');
 mongoose.connect(connectionString,
   {
     useNewUrlParser: true,
@@ -113,6 +113,24 @@ app.use(require('express-session')({
  app.use(passport.initialize());
  app.use(passport.session());
  //
+ passport.use(new LocalStrategy(
+  function(username, password, done) {
+  Account.findOne({ username: username })
+  .then(function (user){
+  if (err) { return done(err); }
+  if (!user) {
+  return done(null, false, { message: 'Incorrect username.' });
+  }
+  if (!user.validPassword(password)) {
+  return done(null, false, { message: 'Incorrect password.' });
+  }
+  return done(null, user);
+  })
+  .catch(function(err){
+  return done(err)
+  })
+  })
+  )
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -129,18 +147,6 @@ var Account =require('./models/account');
 passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
-
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const passportLocalMongoose = require("passport-localmongoose");
-const accountSchema = new Schema({
- username: String,
- password: String
-});
-accountSchema.plugin(passportLocalMongoose);
-// We export the Schema to avoid attaching the model to the
-// default mongoose connection.
-module.exports = mongoose.model("Account", accountSchema);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

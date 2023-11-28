@@ -1,9 +1,14 @@
 var express = require('express');
 const Device_controlers= require('../controllers/Device');
 var router = express.Router();
-
-
-
+// A little function to check if we have an authorized user and continue on or
+// redirect to login.
+const secured = (req, res, next) => {
+    if (req.user){
+    return next();
+    }
+    res.redirect("/login");
+    }
 // GET Devices
 router.get('/', Device_controlers.Device_view_all_Page );
  //GET request for one Devices.
